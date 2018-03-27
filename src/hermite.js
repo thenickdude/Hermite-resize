@@ -11,7 +11,7 @@ function Hermite_class() {
 	 * contructor
 	 */
 	this.init = function () {
-		cores = navigator.hardwareConcurrency || 4;
+		cores = (typeof navigator !== "undefined") && navigator.hardwareConcurrency || 4;
 	}();
 
 	/**
@@ -209,7 +209,7 @@ function Hermite_class() {
 	};
 
 	// Build a worker from an anonymous function body - purpose is to avoid separate file
-	workerBlobURL = window.URL.createObjectURL(new Blob(['(',
+	workerBlobURL = (typeof window !== "undefined") && window.URL.createObjectURL(new Blob(['(',
 		function () {
 			//begin worker
 			onmessage = function (event) {
